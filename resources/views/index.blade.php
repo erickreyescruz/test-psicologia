@@ -5,6 +5,9 @@
     <title>Test</title>
     <link rel="stylesheet" href="js/core/node_modules/angular-material/angular-material.css" charset="utf-8">
     <link rel="stylesheet" href="js/core/node_modules/angular-material-icons/angular-material-icons.css" charset="utf-8">
+    <?php
+    session_start();
+    ?>
   </head>
   <body>
     <div ui-view="header"></div>

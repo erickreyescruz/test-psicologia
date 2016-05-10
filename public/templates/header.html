@@ -1,8 +1,7 @@
 header
-<div ng-repeat="dato in datos">
-  <p>{{dato.nombre}}</p>
-  <p>{{dato.usuario}}</p>
-  <p>{{dato.ap_paterno}}</p>
-  <p>{{dato.ap_materno}}</p>
-</div>
 {{cabecera}}
+<form>
+<input type="text" ng-model="datos.usuario">
+<input type="text" ng-model="datos.password">
+<md-button ng-click="login()">Go</md-button>
+</form>

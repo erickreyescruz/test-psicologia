@@ -1,11 +1,16 @@
 myApp.controller('headerCtrl', ['$scope', '$http', '$state', function($scope, $http, $state){
   $scope.cabecera = '*************************************************';
-  $scope.datos = [];
-  $http.post('api/v1/login')
-  .then(function(response){
-    $scope.datos = response;
-    console.log($scope.datos);
-  }, function(response){
-    console.log(500);
-  });
+  $scope.datos = {
+    'usuario':'',
+    'password':''
+  }
+  $scope.login = function(){
+    $http.post('api/v1/login', $scope.datos)
+    .then(function(response){
+      console.log(200);
+      console.log(response);
+    }, function(response){
+      console.log(500);
+    });
+  }
 }]);
