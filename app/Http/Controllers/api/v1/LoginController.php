@@ -17,9 +17,24 @@ class LoginController extends Controller
       ->where('password', $password)
       ->first();
 
+      $status = array(
+        'code'=>200
+      );
+
       if($usuario){
         $_SESSION['id']=$usuario->id;
+        $status['data']=$usuario->id;
+        return $status;
+      }else{
+        $status['code']=404;
+        return $status;
       }
-      return $usuario->id;
+
+    }
+
+    public function logout(){
+      session_start();
+      session_destroy();
+      return 'ok';
     }
 }

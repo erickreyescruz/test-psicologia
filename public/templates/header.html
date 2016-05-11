@@ -1,7 +1,23 @@
-header
-{{cabecera}}
-<form>
-<input type="text" ng-model="datos.usuario">
-<input type="text" ng-model="datos.password">
-<md-button ng-click="login()">Go</md-button>
-</form>
+<md-toolbar>
+  <div class="md-toolbar-tools barra">
+    <span flex></span>
+    <div ng-show="status==false" class="login">
+      <md-input-container>
+        <label>Usuario</label>
+        <input type="text" ng-model="datos.usuario">
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input type="password" ng-model="datos.password">
+      </md-input-container>
+      <md-button ng-click="login()" class="md-icon-button md-primary">
+        <ng-md-icon icon="send" style="fill:white"></ng-md-icon>
+      </md-button>
+    </div>
+    <div ng-show="status==true" class="login">
+      LOGGED
+      <md-button ng-click="logout()">Cerrar sesión</md-button>
+    </div>
+  </div>
+
+</md-toolbar>
