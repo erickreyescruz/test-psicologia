@@ -21,5 +21,6 @@
     <script type="text/javascript" src="js/core/node_modules/angular-material-icons/angular-material-icons.min.js"></script>
     <script type="text/javascript" src="js/home/myApp.js"></script>
     <script type="text/javascript" src="js/home/header.js"></script>
+    <script type="text/javascript" src="js/home/home.js"></script>
   </body>
 </html>

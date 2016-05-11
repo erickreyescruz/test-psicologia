@@ -12,6 +12,7 @@ myApp.controller('headerCtrl', ['$scope', '$http', '$state', function($scope, $h
           console.log(200);
           console.log(response.data);
           $scope.status = true;
+          $state.go('inicio.home');
         }else{
           console.log(404);
           alert('No se encontro usuario');
@@ -34,6 +35,7 @@ myApp.controller('headerCtrl', ['$scope', '$http', '$state', function($scope, $h
         'password':''
       }
       $scope.status = false;
+      $state.go('inicio');
     }, function(response){
       console.log(500);
     });
