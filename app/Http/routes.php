@@ -22,3 +22,5 @@ Route::post('api/v1/login', 'api\v1\LoginController@index');
 Route::post('api/v1/logout', 'api\v1\LoginController@logout');
 
 Route::post('api/v1/register', 'api\v1\RegisterController@index');
+
+Route::post('api/v1/Users', 'api\v1\UsersController@Users');

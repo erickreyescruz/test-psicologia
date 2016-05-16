@@ -3,6 +3,7 @@ myApp.controller('headerCtrl', ['$scope', '$http', '$state', function($scope, $h
     'usuario':'',
     'password':''
   }
+
   $scope.status = false;
   $scope.login = function(){
     if($scope.datos.usuario!=''&&$scope.datos.password!=''){
@@ -13,6 +14,7 @@ myApp.controller('headerCtrl', ['$scope', '$http', '$state', function($scope, $h
           console.log(response.data);
           $scope.status = true;
           $state.go('inicio.home');
+          $scope.datos = response.data.data;
         }else{
           console.log(404);
           alert('No se encontro usuario');
@@ -21,7 +23,7 @@ myApp.controller('headerCtrl', ['$scope', '$http', '$state', function($scope, $h
         console.log(500);
       });
     }else{
-      alert('Introduce tus datos');
+      alert('Favor de llenar todos los campos');
     }
 
   }

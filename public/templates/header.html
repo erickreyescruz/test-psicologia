@@ -1,5 +1,8 @@
 <md-toolbar>
   <div class="md-toolbar-tools barra">
+    <md-button ui-sref="inicio.home" ng-show="status==true">
+      <ng-md-icon icon="home" style="fill:white"></ng-md-icon>
+    </md-button>
     <span flex></span>
     <div ng-show="status==false" class="login">
       <md-input-container>
@@ -15,8 +18,11 @@
       </md-button>
     </div>
     <div ng-show="status==true" class="login">
-      LOGGED
-      <md-button ng-click="logout()">Cerrar sesión</md-button>
+      {{datos.nombre+" "+datos.ap_paterno+" "+datos.ap_materno | uppercase}}
+      <md-button ng-click="logout()" class="md-raised md-warn">Cerrar sesión</md-button>
+    </div>
+    <div ng-show="datos.id_role==1">
+      <md-button ui-sref="inicio.admin" class="md-raised md-warn">Admin Panel</md-button>
     </div>
   </div>
 

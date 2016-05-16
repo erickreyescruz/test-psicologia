@@ -23,7 +23,7 @@ class LoginController extends Controller
 
       if($usuario){
         $_SESSION['id']=$usuario->id;
-        $status['data']=$usuario->id;
+        $status['data']=$usuario;
         return $status;
       }else{
         $status['code']=404;

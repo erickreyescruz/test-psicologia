@@ -4,7 +4,7 @@ myApp.config(function($stateProvider, $urlRouterProvider){
 
   $stateProvider
 	.state('inicio.home', {
-		url: '/home',
+		url: 'home',
 		views: {
 			'content': {
         'controller': 'homeCtrl',
