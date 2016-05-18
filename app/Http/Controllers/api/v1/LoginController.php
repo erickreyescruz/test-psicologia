@@ -37,4 +37,5 @@ class LoginController extends Controller
       session_destroy();
       return 'ok';
     }
+
 }

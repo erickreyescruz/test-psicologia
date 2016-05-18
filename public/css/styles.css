@@ -49,3 +49,11 @@ button.md-icon-button.md-primary.saveRegister.md-button.md-ink-ripple{
   position: absolute;
   margin-top: 50%;
 }
+.btn-comenzar{
+  width: 100%;
+  height:500px;
+}
+.btn-comenzar button.md-button{
+  left:45%;
+  top: 50%;
+}

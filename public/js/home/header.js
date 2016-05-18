@@ -1,4 +1,4 @@
-myApp.controller('headerCtrl', ['$scope', '$http', '$state', function($scope, $http, $state){
+myApp.controller('headerCtrl', ['$scope', '$http', '$state', '$timeout', function($scope, $http, $state, $timeout){
   $scope.datos = {
     'usuario':'',
     'password':''
@@ -12,8 +12,8 @@ myApp.controller('headerCtrl', ['$scope', '$http', '$state', function($scope, $h
         if(response.data.code==200){
           console.log(200);
           console.log(response.data);
-          $scope.status = true;
           $state.go('inicio.home');
+          $scope.status=true;
           $scope.datos = response.data.data;
         }else{
           console.log(404);
@@ -41,5 +41,21 @@ myApp.controller('headerCtrl', ['$scope', '$http', '$state', function($scope, $h
     }, function(response){
       console.log(500);
     });
+  }
+  $scope.counter=5;
+  $scope.top=0;
+  $scope.validate=false;
+  $scope.countdown=function(){
+    $timeout(function(){
+      $scope.counter--;
+      if($scope.top>=10){
+        $scope.validate=true;
+      }
+      $scope.countdown();
+      if($scope.counter==0){
+        $scope.counter=5;
+        $scope.top++;
+      }
+    }, 1000);
   }
 }]);

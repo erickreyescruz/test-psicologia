@@ -14,6 +14,6 @@ myApp.config(function($stateProvider, $urlRouterProvider){
 	});
 });
 
-myApp.controller('homeCtrl', ['$scope', '$http', '$state', function($scope, $http, $state){
+myApp.controller('homeCtrl', ['$scope', '$http', '$state', '$timeout', function($scope, $http, $state, $timeout){
 
 }]);
