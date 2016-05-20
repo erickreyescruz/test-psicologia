@@ -7,10 +7,20 @@ use DB;
 
 class ImagesController extends Controller
 {
-    public function index($id){
+    public function index(){
+      $images=DB::table('imagenes')
+      ->get();
+      $length = count($images);
+      $random = rand(1, $length);
       $image=DB::table('imagenes')
-      ->where('id', '=', $id)
+      ->where('id', '=', $random)
       ->get();
       return $image;
     }
+    public function get_images(){
+      $images=DB::table('imagenes')
+      ->get();
+      return $images;
+    }
+
 }

@@ -20,10 +20,10 @@ class LoginController extends Controller
       $status = array(
         'code'=>200
       );
-
+      $_SESSION['logged']=false;
       if($usuario){
+        $_SESSION['logged']=true;
         $_SESSION['id']=$usuario->id;
-        $status['data']=$usuario;
         return $status;
       }else{
         $status['code']=404;
@@ -36,6 +36,19 @@ class LoginController extends Controller
       session_start();
       session_destroy();
       return 'ok';
+    }
+
+    public function isLogged(){
+      session_start();
+      $id = $_SESSION['id'];
+      if($_SESSION['logged']){
+        $usuario = DB::table('usuarios')
+        ->where('id', $id)
+        ->get();
+        return $usuario;
+      }else{
+        return 'noLogged';
+      }
     }
 
 }

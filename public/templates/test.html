@@ -1,6 +1,17 @@
 <div>
+  <p>
+    {{image.id}}
+  </p>
   <img ng-src="images/{{image.foto}}" />
 </div>
 <div ng-init="countdown()" ng-if="!validate">
   {{counter}}
+</div>
+<p>
+  ¿Pertenece a la categoria "X"?
+</p>
+<md-button class="md-raised md-warn">Si</md-button>
+<md-button class="md-raised md-warn">No</md-button>
+<div>
+  <md-button ng-click="stopTest()">Stop</md-button>
 </div>

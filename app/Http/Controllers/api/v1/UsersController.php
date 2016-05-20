@@ -8,6 +8,8 @@ use DB;
 class UsersController extends Controller
 {
     public function Users(){
-      
+      $users = DB::table('usuarios')
+      ->get();
+      return $users;
     }
 }

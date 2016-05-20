@@ -4,7 +4,18 @@ myApp.controller('headerCtrl', ['$scope', '$http', '$state', '$timeout', functio
     'password':''
   }
 
-  $scope.status = false;
+  $scope.isLogged = function(){
+    $http.post('api/v1/isLogged')
+    .then(function(response){
+      $scope.status=true;
+      console.log(200);
+      console.log(response.data[0]);
+      $scope.info = response.data[0];
+    }, function(response){
+      console.log(500);
+    });
+  }
+
   $scope.login = function(){
     if($scope.datos.usuario!=''&&$scope.datos.password!=''){
       $http.post('api/v1/login', $scope.datos)
@@ -14,7 +25,7 @@ myApp.controller('headerCtrl', ['$scope', '$http', '$state', '$timeout', functio
           console.log(response.data);
           $state.go('inicio.home');
           $scope.status=true;
-          $scope.datos = response.data.data;
+          $scope.isLogged();
         }else{
           console.log(404);
           alert('No se encontro usuario');
@@ -57,5 +68,8 @@ myApp.controller('headerCtrl', ['$scope', '$http', '$state', '$timeout', functio
         $scope.top++;
       }
     }, 1000);
+    if($scope.top>9){
+      $state.go('inicio.home');
+    }
   }
 }]);

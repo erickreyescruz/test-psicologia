@@ -1,23 +1,58 @@
 <md-content>
+    <p>Admin Panel</p>
     <md-tabs md-dynamic-height md-border-bottom>
       <md-tab label="Imagenes">
         <md-content class="md-padding">
-          <h1 class="md-display-2">Tab One</h1>
+          <h1 class="md-display-2">Imagenes</h1>
+          <a href="#">Agregar Imagen</a>
+          <p>Categorias</p>
+          <a href="#">Categoria1</a>
+          <a href="#">Categoria2</a>
+          <a href="#">Categoria3</a>
+          <div ng-init="getImages()">
+            <div ng-repeat="image in images" class="imagenes">
+              <img ng-src="images/{{image.foto}}" />
+            </div>
+          </div>
         </md-content>
       </md-tab>
       <md-tab label="Usuarios">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Tab Two</h1>
-        </md-content>
-      </md-tab>
-      <md-tab label="Datos">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Tab Three</h1>
-        </md-content>
-      </md-tab>
-      <md-tab label="Configuraciones">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Tab Three</h1>
+          <h1 class="md-display-2">Usuarios</h1>
+          <a href="#">Agregar nuevo usuario</a>
+          <md-content layout="row" layout-wrap layout-align="center start">
+            <div flex="90" ng-init="get_users()">
+            <md-data-table-container>
+              <table md-data-table md-row-select="selected_user">
+                <thead md-order="query.order">
+                  <tr>
+                    <th ng-show="view_columns.id" name="Id" order-by="id"></th>
+                    <th ng-show="view_columns.nombre" name="Nombre" order-by="nombre"></th>
+                    <th ng-show="view_columns.ap_paterno" name="Apellido paterno" order-by="ap_paterno"></th>
+                    <th ng-show="view_columns.ap_materno" name="Apellido materno" order-by="ap_materno"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr md-auto-select ng-repeat="usuario in usuarios | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+                    <td ng-show="view_columns.id">{{usuario.id}}</td>
+                    <td ng-show="view_columns.nombre">{{usuario.nombre}}</td>
+                    <td ng-show="view_columns.ap_paterno">{{usuario.ap_paterno}}</td>
+                    <td ng-show="view_columns.ap_materno">{{usuario.ap_materno}}</td>
+                    <td>
+                      <md-button class="md-icon-button md-primary" aria-label="Go" ng-style="{'float':'right'}">
+                        <ng-md-icon icon="delete" style="fill:red"></ng-md-icon>
+                      </md-button>
+                      <md-button class="md-icon-button md-primary" aria-label="Go" ng-style="{'float':'right'}">
+                        <ng-md-icon icon="mode_edit" style="fill:#283593"></ng-md-icon>
+                      </md-button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </md-data-table-container>
+            <md-content layout="row" layout-wrap layout-align="center start">
+              <md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{usuarios.length}}"></md-data-table-pagination>
+            </md-content>
+          </div>
         </md-content>
       </md-tab>
     </md-tabs>

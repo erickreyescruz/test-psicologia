@@ -57,3 +57,11 @@ button.md-icon-button.md-primary.saveRegister.md-button.md-ink-ripple{
   left:45%;
   top: 50%;
 }
+.imagenes{
+  display: inline-block;
+  margin: 10px;
+}
+.imagenes img{
+  width:300px;
+  height: 200px;
+}

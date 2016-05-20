@@ -1,4 +1,4 @@
-var myApp = angular.module('App', ['ui.router', 'ngMaterial', 'ngMdIcons', 'ngAnimate']);
+var myApp = angular.module('App', ['ui.router', 'ngMaterial', 'ngMdIcons', 'ngAnimate', 'md.data.table']);
 
 myApp.config(function($stateProvider, $urlRouterProvider){
 

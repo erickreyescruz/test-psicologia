@@ -1,10 +1,10 @@
 <md-toolbar>
-  <div class="md-toolbar-tools barra">
+  <div class="md-toolbar-tools barra" ng-init="isLogged()">
     <md-button ui-sref="inicio.home" ng-show="status==true">
       <ng-md-icon icon="home" style="fill:white"></ng-md-icon>
     </md-button>
     <span flex></span>
-    <div ng-show="status==false" class="login">
+    <div ng-if="!status" class="login">
       <md-input-container>
         <label>Usuario</label>
         <input type="text" ng-model="datos.usuario">
@@ -17,12 +17,10 @@
         <ng-md-icon icon="send" style="fill:white"></ng-md-icon>
       </md-button>
     </div>
-    <div ng-show="status==true" class="login">
-      {{datos.nombre+" "+datos.ap_paterno+" "+datos.ap_materno | uppercase}}
+    <div ng-if="status" class="login">
+      {{info.nombre+" "+info.ap_paterno+" "+info.ap_materno | uppercase}}
       <md-button ng-click="logout()" class="md-raised md-warn">Cerrar sesión</md-button>
-    </div>
-    <div ng-show="datos.id_role==1">
-      <md-button ui-sref="inicio.admin" class="md-raised md-warn">Admin Panel</md-button>
+        <md-button ng-if="info.id_role==1" ui-sref="inicio.admin" class="md-raised md-warn">Admin Panel</md-button>
     </div>
   </div>
 
