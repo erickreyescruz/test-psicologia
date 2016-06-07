@@ -26,5 +26,6 @@
     <script type="text/javascript" src="js/home/home.js"></script>
     <script type="text/javascript" src="js/home/admin.js"></script>
     <script type="text/javascript" src="js/home/test.js"></script>
+    <script type="text/javascript" src="js/home/user.js"></script>
   </body>
 </html>

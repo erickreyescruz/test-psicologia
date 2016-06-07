@@ -55,11 +55,11 @@ class AdminController extends Controller
     }
 
     public function change_pass(){
-      //$My_ID = $_SESSION['id'];
+      session_start();
       $d_pass_b = Request::input('d_pass_b','');
       $d_pass = Request::input('d_pass','');
       $d_pass_r = Request::input('d_pass_r','');
-      $My_ID = 1;
+      $MY_ID = $_SESSION['id'];
 
       $pass_b = DB::table('usuarios')->select('password')
       ->where('id', '=', $My_ID)
@@ -89,8 +89,6 @@ class AdminController extends Controller
         );
       }
       return $res;
-
-
     }
 
 }

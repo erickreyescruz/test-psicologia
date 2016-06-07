@@ -1,4 +1,4 @@
-<div>
+<div ng-init="init()" >
   <p>
     {{image.id}}
   </p>
@@ -10,8 +10,8 @@
 <p>
   ¿Pertenece a la categoria "X"?
 </p>
-<md-button class="md-raised md-warn">Si</md-button>
-<md-button class="md-raised md-warn">No</md-button>
+<md-button class="md-raised md-warn" ng-click="istNot(image.id)">No</md-button>
 <div>
   <md-button ng-click="stopTest()">Stop</md-button>
+  {{startCount}}
 </div>
