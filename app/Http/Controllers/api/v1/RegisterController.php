@@ -15,16 +15,22 @@ class RegisterController extends Controller
       $edad = Request::input('edad');
       $password = Request::input('password');
 
-      DB::table('usuarios')
-      ->insertGetId([
-        'usuario'=>$usuario,
-        'nombre'=>$nombre,
-        'ap_paterno'=>$ap_paterno,
-        'ap_materno'=>$ap_materno,
-        'edad'=>$edad,
-        'password'=>$password,
-        'id_role'=>1
-      ]);
-      return 'ok';
+      if($usuario!=''&&$nombre!=''&&$ap_paterno!=''&&$ap_materno!=''&&$edad!=''&&$password!=''){
+        DB::table('usuarios')
+        ->insertGetId([
+          'usuario'=>$usuario,
+          'nombre'=>$nombre,
+          'ap_paterno'=>$ap_paterno,
+          'ap_materno'=>$ap_materno,
+          'edad'=>$edad,
+          'password'=>$password,
+          'id_role'=>2
+        ]);
+        return 'ok';
+      }else{
+        return 500;
+      }
+
+
     }
 }

@@ -14,13 +14,22 @@
         <input type="password" ng-model="datos.password">
       </md-input-container>
       <md-button ng-click="login()" class="md-icon-button md-primary">
-        <ng-md-icon icon="send" style="fill:white"></ng-md-icon>
+        <ng-md-icon icon="login" style="fill:white"></ng-md-icon>
       </md-button>
     </div>
-    <div ng-if="status" class="login">
-      {{info.nombre+" "+info.ap_paterno+" "+info.ap_materno | uppercase}}
-      <md-button ng-click="logout()" class="md-raised md-warn">Cerrar sesión</md-button>
-        <md-button ng-if="info.id_role==1" ui-sref="inicio.admin" class="md-raised md-warn">Admin Panel</md-button>
+    <div ng-if="status" class="login" style="width:500px;display:inline-block;">
+      <p style="position:absolute;top:0;right:10%;width:300px;">{{info.nombre+" "+info.ap_paterno+" "+info.ap_materno | uppercase}}</p>
+      <div style="position:absolute;right:0;top:0;margin-left:230px;width:100px;height:100%;">
+      <md-button style="right:40%;position:absolute;top:20%;" ng-if="info.id_role==1" ui-sref="inicio.admin" class="md-icon-button md-primary">
+        <ng-md-icon icon="build" style="fill:white"></ng-md-icon>
+      </md-button>
+      <md-button style="right:40%;position:absolute;top:20%;" ng-if="info.id_role==3" ui-sref="inicio.supervisor" class="md-icon-button md-primary">
+        <ng-md-icon icon="menu" style="fill:white"></ng-md-icon>
+      </md-button>
+      <md-button style="right:0;position:absolute;top:20%;" ng-click="logout()" class="md-icon-button md-primary">
+        <ng-md-icon icon="logout" style="fill:white"></ng-md-icon>
+      </md-button>
+      </div>
     </div>
   </div>
 

@@ -25,7 +25,7 @@ class UsersController extends Controller
 
       if ($pass = $pass_r) {
         $result=DB::table('usuarios')->insert(
-          array('usuario' => $usuario, 'nombre' => $nombre, 'ap_paterno' => $ap_paterno,'ap_materno' => $ap_materno,'edad' => $edad, 'password' => $pass)
+          array('usuario' => $usuario, 'nombre' => $nombre, 'ap_paterno' => $ap_paterno,'ap_materno' => $ap_materno,'edad' => $edad, 'password' => $pass, 'id_role'=>2)
         );
 
         if(count($result) == 1){

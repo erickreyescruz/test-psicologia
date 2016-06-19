@@ -1,13 +1,27 @@
 <md-content ng-init="getImagesInCategory('Animales')">
-    <p>Admin Panel</p>
     <md-tabs md-dynamic-height md-border-bottom>
       <md-tab label="Datos">
-          <h1 class="md-display-2">Datos</h1>
-          <label>Cambiar Contraseña</label>
-          <input type="text" id="d_pass" name="d_pass_b" ng-model="d_pass_b"/>
-          <input type="text" id="d_pass" name="d_pass" ng-model="d_pass"/>
-          <input type="text" id="d_pass_r" name="d_pass_r" ng-model="d_pass_r"/>
-         <button type="button" class="data" ng-click="change_pass(d_pass_b,d_pass,d_pass_r)">Cambiar Contraseña</button>
+        <h1 class="md-display-2" style="margin-left:10%;">Datos</h1>
+        <md-content class="tab1 md-whiteframe-4dp">
+          <label class="md-headline">Cambiar Contraseña</label>
+          <div layout="row" layout-align="center center">
+          <md-input-container>
+            <label>d_pass_b</label>
+            <input type="text" id="d_pass" name="d_pass_b" ng-model="d_pass_b"/>
+          </md-input-container>
+          <md-input-container>
+            <label>d_pass</label>
+            <input type="text" id="d_pass" name="d_pass" ng-model="d_pass"/>
+          </md-input-container>
+          </div>
+          <div layout="row" layout-align="center center">
+          <md-input-container>
+            <label>d_pass_r</label>
+            <input type="text" id="d_pass_r" name="d_pass_r" ng-model="d_pass_r"/>
+          </md-input-container>
+         <md-button class="md-accent md-raised md-hue-2" ng-click="change_pass(d_pass_b,d_pass,d_pass_r)">Cambiar Contraseña</md-button>
+          </div>
+        </md-content>
       </md-tab>
       <md-tab label="Imagenes">
         <md-content class="md-padding">
@@ -40,23 +54,47 @@
         </md-content>
       </md-tab>
       <md-tab label="Usuarios">
-          <h1 class="md-display2">Usuarios</h1>
-          <h3>Agregar Nuevo Usuario</h3>
+        <md-button class="md-icon-button md-primary" ng-class="formStatus == true? 'rotate_45' : ''">
+            <ng-md-icon icon="add" style="fill:black" ng-click="showForm()"></ng-md-icon>
+        </md-button>
+          <md-content ng-if="formStatus" class="md-whiteframe-3dp newUserForm">
+          <div layout-gt-xs="row">
+          <md-input-container class="md-block" flex-gt-xs>
           <label>Usuario</label>
-          <input type="text" id="u_usuario" name="u_usuario" ng-model="u_usuario"/>
+          <input type="text" id="u_usuario" name="usuario" ng-model="usuario.usuario"/>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
           <label>Nombre</label>
-          <input type="text" id="u_nombre" name="u_nombre" ng-model="u_nombre"/>
+          <input type="text" id="u_nombre" name="nombre" ng-model="usuario.nombre"/>
+          </md-input-container>
+          </div>
+          <div layout-gt-xs="row">
+          <md-input-container class="md-block" flex-gt-xs>
           <label>Apellido Paterno</label>
-          <input type="text" id="u_ap_paterno" name="u_ap_paterno" ng-model="u_ap_paterno"/>
+          <input type="text" id="u_ap_paterno" name="ap_paterno" ng-model="usuario.ap_paterno"/>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
           <label>Apellido Materno</label>
-          <input type="text" id="u_ap_materno" name="u_ap_materno" ng-model="u_ap_materno"/>
+          <input type="text" id="u_ap_materno" name="ap_materno" ng-model="usuario.ap_materno"/>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
           <label>Edad</label>
-          <input type="text" id="u_edad" name="u_edad" ng-model="u_edad"/>
+          <input type="text" id="u_edad" name="edad" ng-model="uusuario.dad"/>
+          </md-input-container>
+          </div>
+          <div layout-gt-xs="row">
+          <md-input-container class="md-block" flex-gt-xs>
           <label>Contraseña</label>
-          <input type="text" id="u_pass" name="u_pass" ng-model="u_pass"/>
+          <input type="text" id="u_pass" name="pass" ng-model="usuario.pass"/>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-xs>
           <label>Repite Contraseña</label>
-          <input type="text" id="u_pass_r" name="u_pass_r" ng-model="u_pass_r"/>
-          <button type="button" class="admin" ng-click="new_user(u_usuario, u_nombre, u_ap_paterno, u_ap_materno, u_edad, u_pass,u_pass_r)">Nuevo Usuario</button>
+          <input type="text" id="u_pass_r" name="pass_r" ng-model="usuario.pass_r"/>
+          </md-input-container>
+          </div>
+          <md-button class="md-accent md-raised md-hue-2" ng-click="new_user()">Nuevo Usuario</md-button>
+          <md-button class="md-accent md-raised md-hue-2" ng-click="closeForm()">Cerrar</md-button>
+          </md-content>
           <md-content layout="row" layout-wrap layout-align="center start">
             <div flex="90" ng-init="get_users()">
             <md-data-table-container>
@@ -83,7 +121,7 @@
                           <ng-md-icon icon="mode_edit" style="fill:#283593"></ng-md-icon>
                         </md-button>
                         <md-button class="md-icon-button md-primary" aria-label="Go" ng-style="{'float':'right'}">
-                          <a href="#/user/{{user.id}}"><ng-md-icon icon="add_circle_outline" style="fill:#283593"></ng-md-icon></a>
+                          <a href="#/user/{{user.id}}"><ng-md-icon icon="add" style="fill:#283593"></ng-md-icon></a>
                         </md-button>
                       </td>
                     </a>
@@ -99,23 +137,47 @@
       </md-tab>
 
       <md-tab label="Administradores">
-          <h1 class="md-display2">Administradores</h1>
-          <h3>Agregar Nuevo Administrador</h3>
-          <label>Usuario</label>
-          <input type="text" id="usuario" name="usuario" ng-model="usuario"/>
-          <label>Nombre</label>
-          <input type="text" id="nombre" name="nombre" ng-model="nombre"/>
-          <label>Apellido Paterno</label>
-          <input type="text" id="ap_paterno" name="ap_paterno" ng-model="ap_paterno"/>
-          <label>Apellido Materno</label>
-          <input type="text" id="ap_materno" name="ap_materno" ng-model="ap_materno"/>
-          <label>Edad</label>
-          <input type="text" id="edad" name="edad" ng-model="edad"/>
-          <label>Contraseña</label>
-          <input type="text" id="pass" name="pass" ng-model="pass"/>
-          <label>Repite Contraseña</label>
-          <input type="text" id="pass_r" name="pass_r" ng-model="pass_r"/>
-          <button type="button" class="admin" ng-click="new_admin(usuario, nombre, ap_paterno, ap_materno, edad, pass, p)">Agregar</button>
+          <md-button class="md-icon-button md-primary" ng-class="formAdminStatus == true? 'rotate_45' : ''">
+            <ng-md-icon icon="add" style="fill:black" ng-click="showAdminForm()"></ng-md-icon>
+          </md-button>
+          <md-content ng-if="formAdminStatus" class="md-whiteframe-3dp newAdminForm">
+            <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>Usuario</label>
+              <input type="text" id="usuario" name="admin.usuario" ng-model="admin.usuario"/>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>Nombre</label>
+              <input type="text" id="nombre" name="admin.nombre" ng-model="admin.nombre"/>
+            </md-input-container>
+            </div>
+            <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>Apellido Paterno</label>
+              <input type="text" id="ap_paterno" name="admin.ap_paterno" ng-model="admin.ap_paterno"/>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>Apellido Materno</label>
+              <input type="text" id="ap_materno" name="admin.ap_materno" ng-model="admin.ap_materno"/>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>Edad</label>
+              <input type="text" id="edad" name="admin.edad" ng-model="admin.edad"/>
+            </md-input-container>
+            </div>
+            <div layout-gt-xs="row">
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>Contraseña</label>
+              <input type="text" id="pass" name="admin.pass" ng-model="admin.pass"/>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs>
+              <label>Repite Contraseña</label>
+              <input type="text" id="pass_r" name="admin.pass_r" ng-model="admin.pass_r"/>
+            </md-input-container>
+            </div>
+          <md-button class="md-accent md-raised md-hue-2" ng-click="new_admin()">Nuevo Usuario</md-button>
+          <md-button class="md-accent md-raised md-hue-2" ng-click="closeAdminForm()">Nuevo Usuario</md-button>
+          </md-content>
           <md-content layout="row" layout-wrap layout-align="center start">
             <div flex="90" ng-init="get_admins()">
             <md-data-table-container>
@@ -147,7 +209,7 @@
               </table>
             </md-data-table-container>
             <md-content layout="row" layout-wrap layout-align="center start">
-              <md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{usuarios.length}}"></md-data-table-pagination>
+              <md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{admins.length}}"></md-data-table-pagination>
             </md-content>
           </div>
           </md-content>
@@ -155,9 +217,11 @@
 
       <md-tab label="Categorias">
           <h1 class="md-display2">Categorias</h1>
-          <h3>Agregar Categoria</h3>
-          <input type="text" id="category" name="category" ng-model="category"/>
-          <button type="button" class="category" ng-click="new_category(category)">Agregar</button>
+          <md-input-container>
+            <label>Nueva categoria</label>
+            <input type="text" id="category" name="category" ng-model="category"/>
+          </md-input-container>
+          <md-button class="md-accent md-raised md-hue-2" ng-click="new_category(category)">Agregar</md-button>
           <md-content layout="row" layout-wrap layout-align="center start">
             <div flex="90" ng-init="getCategories()">
               <md-data-table-container>
@@ -183,7 +247,7 @@
                 </table>
               </md-data-table-container>
               <md-content layout="row" layout-wrap layout-align="center start">
-                <md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{cat.length}}"></md-data-table-pagination>
+                <md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{categories.length}}"></md-data-table-pagination>
               </md-content>
             </div>
           </md-content>

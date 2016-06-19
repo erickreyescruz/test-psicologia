@@ -106,18 +106,28 @@ myApp.controller('adminCtrl', ['$scope', '$http', '$state', function($scope, $ht
                        alert('Categoría insertada correctamente');
                        console.log(200);
                        console.log(response);
+											 $state.go($state.current, {}, {reload:true});
                }, function(){
                        console.log(500);
                });
        }
-
-       $scope.new_admin = function(usuario,nombre,ap_paterno,ap_materno,edad, pass, pass_r){
-               if (pass == pass_r) {
-                       $http.post('api/v1/admin/new',{'usuario': usuario, 'nombre': nombre, 'ap_paterno': ap_paterno, 'ap_materno': ap_materno, 'edad': edad, 'pass': pass, 'pass_r': pass_r})
+			 $scope.admin={
+				 'usuario':'',
+				 'nombre':'',
+				 'ap_paterno':'',
+				 'ap_materno':'',
+				 'edad':'',
+				 'pass':'',
+				 'pass_r':''
+			 }
+       $scope.new_admin = function(){
+               if ($scope.admin.pass == $scope.admin.pass_r) {
+                       $http.post('api/v1/admin/new',$scope.admin)
                        .then(function(response){
                                        alert('Admin agragado correctamente');
                                        console.log(200);
                                        console.log(response);
+																			 $state.go($state.current, {}, {reload:true});
                        }, function(){
                                console.log(500);
                        });
@@ -125,14 +135,23 @@ myApp.controller('adminCtrl', ['$scope', '$http', '$state', function($scope, $ht
                        alert('Las contraseñas no coinciden');
                }
        }
-
-       $scope.new_user = function(usuario,nombre,ap_paterno,ap_materno,edad, pass, pass_r){
-               if (pass == pass_r) {
-                       $http.post('api/v1/user/new',{'usuario': usuario, 'nombre': nombre, 'ap_paterno': ap_paterno, 'ap_materno': ap_materno, 'edad': edad, 'pass': pass, 'pass_r': pass_r})
+			 $scope.usuario = {
+				 'usuario':'',
+				 'nombre':'',
+				 'ap_paterno':'',
+				 'ap_materno':'',
+				 'edad':'',
+				 'pass':'',
+				 'pass_r':''
+			 }
+       $scope.new_user = function(){
+               if ($scope.usuario.pass == $scope.usuario.pass_r) {
+                       $http.post('api/v1/user/new',$scope.usuario)
                        .then(function(response){
                                        alert('Usuario agragado correctamente');
                                        console.log(200);
                                        console.log(response);
+																			 $state.go($state.current, {}, {reload:true});
                        }, function(){
                                console.log(500);
                        });
@@ -157,5 +176,18 @@ myApp.controller('adminCtrl', ['$scope', '$http', '$state', function($scope, $ht
                        alert('Las contraseñas que quieres cambiar no coinciden');
                }
        }
-
+			 $scope.formStatus=false;
+			 $scope.showForm=function(){
+				 $scope.formStatus = !$scope.formStatus;
+			 }
+			 $scope.closeForm=function(){
+				 $scope.formStatus=false;
+			 }
+			 $scope.formAdminStatus=false;
+			 $scope.showAdminForm=function(){
+				 $scope.formAdminStatus=!$scope.formAdminStatus;
+			 }
+			 $scope.closeAdminForm=function(){
+				 $scope.formAdminStatus=false;
+			 }
  }]);

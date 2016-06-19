@@ -30,9 +30,13 @@ myApp.controller('registerCtrl', ['$scope', '$http', '$state', function($scope, 
 	$scope.save = function(){
 		$http.post('api/v1/register', $scope.nuevo)
 		.then(function(response){
-			console.log(200);
-			alert('Se guardo exitosamente');
-			$state.go($state.current,{}, {reload:true});
+			if(response.data==500){
+				alert('Favor de llenar todos los datos');
+			}else{
+				console.log(200);
+				alert('Se guardo exitosamente');
+				$state.go($state.current,{}, {reload:true});
+			}
 		}, function(response){
 			console.log(500);
 		});
